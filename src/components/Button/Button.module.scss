@@ -1,0 +1,59 @@
+@import "../../styles/_variables.scss";
+
+.button {
+  padding: 0.625rem 1.125rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &.primary {
+    background-color: $primary-bgcolor;
+    color: $primary-color;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  &.secondary {
+    border: 1px solid #d0d5dd;
+    display: block;
+    background: $secondary-bgcolor;
+    color: $secondary-color;
+
+    &:hover {
+      background-color: lighten($secondary-color, 10%);
+    }
+  }
+
+  &.tertiary {
+    background-color: $tertiary-bgcolor;
+    color: $tertiary-color;
+    border: none;
+
+    &:hover {
+      background-color: darken($tertiary-bgcolor, 10%);
+    }
+
+    svg {
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+  }
+
+  &.small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+  }
+
+  &.medium {
+    padding: 0.625rem 1.125rem;
+    font-size: 1rem;
+  }
+
+  &.large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}

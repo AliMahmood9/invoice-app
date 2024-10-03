@@ -1,0 +1,19 @@
+@import "../../styles/_variables.scss";
+
+.dateTimeInput {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid $input-border-color;
+  border-radius: 8px;
+  color: $primary-text-color;
+  height: 44px;
+
+  &:focus {
+    outline: none;
+    border-color: $focus-border-color;
+  }
+
+  &::placeholder {
+    color: $input-border-color;
+  }
+}

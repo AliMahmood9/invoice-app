@@ -1,0 +1,35 @@
+// @import "../styles/_variables.scss";
+@import "../../styles/_variables.scss";
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdownIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $grey-color;
+}
+
+.select {
+  width: 100%;
+  padding: 0.625rem 1.875rem 0.625rem 0.875rem;
+  border: 1px solid $input-border-color;
+  border-radius: 8px;
+  color: $primary-text-color;
+  height: 44px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: $focus-border-color;
+  }
+}
