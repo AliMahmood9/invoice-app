@@ -9,7 +9,7 @@ type DateTimeProps = {
   name: string;
   value: string;
   placeholder?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const DateTime: React.FC<DateTimeProps> = ({
