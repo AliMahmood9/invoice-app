@@ -9,6 +9,7 @@ type SelectFieldProps = {
 
 export const SelectField: React.FC<SelectFieldProps> = ({ name, options }) => {
   const { control } = useFormContext();
+
   return (
     <Controller
       name={name}
