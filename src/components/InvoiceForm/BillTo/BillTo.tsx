@@ -1,40 +1,81 @@
 import React from "react";
 import styles from "./BillTo.module.scss";
 import { InputField, SelectField } from "../../Form";
-import { CountryOptions } from "../../../utils/constants";
+import { CountryOptions, InvoiceTermsOptions } from "../../../utils/constants";
+import { DateTimeField } from "../../Form/DateTimeField/DateTimeField";
 
 export const BillTo: React.FC = () => (
   <div className={styles.billFrom}>
     <h2>Bill To</h2>
     <div className={styles.flexContainer}>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyName">Company Name</label>
-        <InputField name="companyName" placeholder="Company Name" />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyEmail">Company Email</label>
-        <InputField name="companyEmail" placeholder="Company Email" />
-      </div>
+      <InputField
+        name="clientName"
+        placeholder="Client Name"
+        showLabel
+        label="Client Name"
+        className={styles.formGroup}
+      />
+      <InputField
+        name="clientEmail"
+        placeholder="Client Email"
+        showLabel
+        label="Client Email"
+        className={styles.formGroup}
+      />
     </div>
 
     <div className={styles.flexContainer}>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyCountry">Country</label>
-        <SelectField name="companyCountry" options={CountryOptions} />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="city">City</label>
-        <InputField name="companyCity" placeholder="Company City" />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="postalCode">Postal Code</label>
-        <InputField name="companyPostalCode" placeholder="Postal Code" />
-      </div>
+      <SelectField
+        showLabel
+        label="Client Country"
+        name="clientCountry"
+        options={CountryOptions}
+        className={styles.formGroup}
+      />
+      <InputField
+        showLabel
+        label="Client City"
+        name="clientCity"
+        placeholder="Client City"
+        className={styles.formGroup}
+      />
+      <InputField
+        showLabel
+        label="Postal Code"
+        name="clientPostalCode"
+        placeholder="Postal Code"
+        className={styles.formGroup}
+      />
     </div>
 
-    <div className={styles.formGroup}>
-      <label htmlFor="streetAddress">Street Address</label>
-      <InputField name="companyStreetAddress" placeholder="Street Address" />
+    <InputField
+      showLabel
+      label="Street Address"
+      className={styles.formGroup}
+      name="clientStreetAddress"
+      placeholder="Street Address"
+    />
+
+    <div className={styles.flexContainer}>
+      <DateTimeField
+        showLabel
+        label="Invoice Date"
+        className={styles.formGroup}
+        name="invoiceDate"
+      />
+
+      <SelectField
+        showLabel
+        label="Payment Terms"
+        name="paymentTerms"
+        options={InvoiceTermsOptions}
+      />
     </div>
+    <InputField
+      name="projectDescription"
+      placeholder="Project Description"
+      showLabel
+      label="Project Description"
+    />
   </div>
 );

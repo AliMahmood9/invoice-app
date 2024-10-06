@@ -12,23 +12,19 @@ type DateTimeProps = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const DateTime: React.FC<DateTimeProps> = ({
-  type,
-  id,
-  name,
-  placeholder,
-  value,
-  onChange,
-}) => {
-  return (
-    <input
-      type={type}
-      id={id}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      className={styles.dateTimeInput}
-    />
-  );
-};
+export const DateTime = React.forwardRef<HTMLInputElement, DateTimeProps>(
+  ({ type, id, name, placeholder, value, onChange }, ref) => {
+    return (
+      <input
+        ref={ref}
+        type={type}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        className={styles.dateTimeInput}
+      />
+    );
+  }
+);

@@ -7,34 +7,53 @@ export const BillFrom: React.FC = () => (
   <div className={styles.billFrom}>
     <h2>Bill From</h2>
     <div className={styles.flexContainer}>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyName">Company Name</label>
-        <InputField name="companyName" placeholder="Company Name" />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyEmail">Company Email</label>
-        <InputField name="companyEmail" placeholder="Company Email" />
-      </div>
+      <InputField
+        name="companyName"
+        className={styles.formGroup}
+        placeholder="Company Name"
+        showLabel
+        label="Company Name"
+      />
+      <InputField
+        className={styles.formGroup}
+        name="companyEmail"
+        placeholder="Company Email"
+        showLabel
+        label="Company Email"
+      />
     </div>
 
     <div className={styles.flexContainer}>
-      <div className={styles.formGroup}>
-        <label htmlFor="companyCountry">Country</label>
-        <SelectField name="companyCountry" options={CountryOptions} />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="city">City</label>
-        <InputField name="companyCity" placeholder="Company City" />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="postalCode">Postal Code</label>
-        <InputField name="companyPostalCode" placeholder="Postal Code" />
-      </div>
+      <SelectField
+        showLabel
+        className={styles.formGroup}
+        label="company Country"
+        name="companyCountry"
+        options={CountryOptions}
+      />
+
+      <InputField
+        className={styles.formGroup}
+        name="companyCity"
+        placeholder="Company City"
+        showLabel
+        label="Company City"
+      />
+      <InputField
+        className={styles.formGroup}
+        name="companyPostalCode"
+        placeholder="Postal Code"
+        showLabel
+        label="Postal Code"
+      />
     </div>
 
-    <div className={styles.formGroup}>
-      <label htmlFor="streetAddress">Street Address</label>
-      <InputField name="companyStreetAddress" placeholder="Street Address" />
-    </div>
+    <InputField
+      className={styles.formGroup}
+      name="companyStreetAddress"
+      placeholder="Company Street Address"
+      showLabel
+      label="Company Street Address"
+    />
   </div>
 );

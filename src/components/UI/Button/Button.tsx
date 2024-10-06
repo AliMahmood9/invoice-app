@@ -5,7 +5,7 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "tertiary";
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   size?: "small" | "medium" | "large";
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 };
 
