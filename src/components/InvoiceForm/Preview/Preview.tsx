@@ -1,62 +1,17 @@
 import React from "react";
 import styles from "./Preview.module.scss";
+import { defaultValues, InvoiceFormData } from "../formUtils";
 
-interface PreviewProps {
-  formData: {
-    invoiceDate?: string;
-    paymentTerms?: string;
-    companyName?: string;
-    companyEmail?: string;
-    companyStreetAddress?: string;
-    clientName?: string;
-    clientCity?: string;
-    clientStreetAddress?: string;
-    projectDescription?: string;
-    companyCity?: string;
-    companyPostalCode?: string;
-    companyCountry?: string;
-    clientCountry?: string;
-    clientEmail?: string;
-    clientPostalCode?: string;
-    items: {
-      id: number;
-      name: string;
-      qty: number;
-      price: number;
-      total: number;
-    }[];
-  };
-}
-
-const dummyData = {
-  invoiceDate: "2024-10-06",
-  paymentTerms: "Net 30",
-  companyName: "Awesome Co.",
-  companyEmail: "contact@awesomeco.com",
-  companyStreetAddress: "123 Awesome St.",
-  companyCity: "Awesome City",
-  companyPostalCode: "12345",
-  companyCountry: "USA",
-  clientName: "John Doe",
-  clientEmail: "john.doe@example.com",
-  clientStreetAddress: "456 Client Ave.",
-  clientCity: "Client City",
-  clientPostalCode: "54321",
-  clientCountry: "USA",
-  projectDescription: "Web Development Services",
-  items: [
-    { id: 1, name: "Web Design", qty: 1, price: 500, total: 500 },
-    { id: 2, name: "Hosting Service", qty: 12, price: 20, total: 240 },
-    { id: 3, name: "SEO Optimization", qty: 1, price: 300, total: 300 },
-  ],
+type PreviewProps = {
+  formData?: InvoiceFormData;
 };
 
 export const Preview: React.FC<PreviewProps> = ({
-  formData = dummyData, // Use dummy data if no formData is provided
+  formData = defaultValues,
 }) => {
   const subtotal = formData.items.reduce((acc, item) => acc + item.total, 0);
   const tax = subtotal * 0.1;
-  const total = subtotal + tax; // Updated to add tax to subtotal
+  const total = subtotal + tax;
 
   return (
     <div className={styles.preview}>
@@ -80,7 +35,7 @@ export const Preview: React.FC<PreviewProps> = ({
             <span>{formData.companyEmail}</span>
             <span>{formData.companyStreetAddress}</span>
             <span>
-              {formData.companyCity} {formData.companyCity ? "," : ""}
+              {formData.companyCity} {formData.companyCity ? "," : ""}{" "}
               {formData.companyPostalCode}
             </span>
             <span>{formData.companyCountry}</span>
@@ -107,19 +62,19 @@ export const Preview: React.FC<PreviewProps> = ({
           <span>Price</span>
           <span>Total Amount</span>
         </div>
-        {formData.items.map((item) => (
-          <div key={item.id} className={styles.itemRow}>
+        {formData.items.map((item, i) => (
+          <div key={`item-${i}`} className={styles.itemRow}>
             <span>{item.name}</span>
             <span>{item.qty}</span>
-            <span>${item.price.toFixed(2)}</span>
-            <span>${item.total.toFixed(2)}</span>
+            <span>${Number(item.price).toFixed(2)}</span>
+            <span>${Number(item.total).toFixed(2)}</span>
           </div>
         ))}
         <div className={styles.totals}>
           <div className={styles.totalsHolder}>
             <div className={styles.subtotal}>
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>${Number(subtotal).toFixed(2)}</span>
             </div>
             <div className={styles.tax}>
               <span>Tax</span>
@@ -127,7 +82,7 @@ export const Preview: React.FC<PreviewProps> = ({
             </div>
             <div className={styles.total}>
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>${Number(total).toFixed(2)}</span>
             </div>
           </div>
         </div>

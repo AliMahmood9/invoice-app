@@ -25,10 +25,7 @@ export const ItemList = () => {
       {fields.map((field, index) => {
         return (
           <div key={field.id} className={styles.itemRow}>
-            <InputField
-              name={`items.${index}.itemName`}
-              placeholder="Item Name"
-            />
+            <InputField name={`items.${index}.name`} placeholder="Item Name" />
             <InputField
               type="number"
               name={`items.${index}.qty`}
@@ -43,8 +40,6 @@ export const ItemList = () => {
               type="number"
               name={`items.${index}.total`}
               placeholder="Total"
-              // value={(Number(field.qty) || 0) * (Number(field.price) || 0)}
-              // readOnly // Make total field read-only
             />
             <button
               type="button"
@@ -62,7 +57,7 @@ export const ItemList = () => {
         size="large"
         onClick={() =>
           append({
-            itemName: "",
+            name: "",
             qty: 0,
             price: 0,
             total: 0,
