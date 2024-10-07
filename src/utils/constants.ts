@@ -12,3 +12,8 @@ export const InvoiceTermsOptions = [
 
 export const graphqlUrl =
   "https://sse-frontend-assessment-api-823449bb66ac.herokuapp.com/graphql";
+
+export const messages = {
+  success: "Your invoice has been created",
+  error: "Error creating invoice",
+};

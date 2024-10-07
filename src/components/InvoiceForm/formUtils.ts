@@ -74,17 +74,14 @@ export const formSchema = yup.object().shape({
   ),
 });
 
-// utils/invoiceUtils.ts
-export const getInvoiceObject = (
-  data: InvoiceFormData,
-  subtotal: number,
-  tax: number,
-  total: number
-) => {
+export const getInvoiceObject = (data: InvoiceFormData) => {
   return {
     createInvoiceAttributes: {
-      billingFrom: {
-        billingFromAddress: {
+      invoiceDate: data.invoiceDate,
+      paymentTerms: data.paymentTerms,
+      projectDescription: data.projectDescription,
+      billingFromAttributes: {
+        billingFromAddressAttributes: {
           streetAddress: data.companyStreetAddress,
           city: data.companyCity,
           country: data.companyCountry,
@@ -92,10 +89,9 @@ export const getInvoiceObject = (
         },
         companyEmail: data.companyEmail,
         companyName: data.companyName,
-        id: "1234", // example ID for testing
       },
-      billingTo: {
-        billingToAddress: {
+      billingToAttributes: {
+        billingToAddressAttributes: {
           streetAddress: data.clientStreetAddress,
           city: data.clientCity,
           country: data.clientCountry,
@@ -103,20 +99,12 @@ export const getInvoiceObject = (
         },
         clientEmail: data.clientEmail,
         clientName: data.clientName,
-        id: "3214", // example ID for testing
       },
-      invoiceDate: data.invoiceDate,
-      items: data.items.map((item, index) => ({
-        id: index.toString(), // Use appropriate ID generation logic
+      itemAttributes: data.items.map((item) => ({
         name: item.name,
         price: Number(item.price),
         quantity: Number(item.qty),
-        totalPrice: Number(item.price) * Number(item.qty),
       })),
-      paymentTerms: data.paymentTerms,
-      subTotal: subtotal, // Calculated subTotal
-      tax: tax, // Calculated tax
-      totalAmount: total, // Calculated totalAmount
     },
   };
 };

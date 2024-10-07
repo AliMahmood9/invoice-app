@@ -16,6 +16,7 @@ import {
 import { CREATE_INVOICE_MUTATION } from "../../graphql/mutation/submitInvoice";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
+import { messages } from "../../utils/constants";
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceFormData>({
@@ -29,23 +30,17 @@ const InvoiceForm = () => {
   const formData = watch();
 
   const onSubmit = async (data: InvoiceFormData) => {
-    const subtotal = data.items.reduce(
-      (acc, item) => acc + item.price * item.qty,
-      0
-    );
-    const tax = subtotal * 0.1;
-    const total = subtotal + tax;
-    const invoiceObject = getInvoiceObject(data, subtotal, tax, total);
+    const invoiceObject = getInvoiceObject(data);
     try {
-      const response = await createInvoice({
+      await createInvoice({
         variables: {
           input: invoiceObject,
         },
       });
-      console.log("response", response);
-      toast("Your invoice has been created");
+      toast(messages.success);
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
+      toast.error(messages.error);
     }
   };
 
