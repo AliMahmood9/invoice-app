@@ -6,7 +6,7 @@ import { CountryOptions } from "../../../utils/constants";
 export const BillFrom: React.FC = () => (
   <div className={styles.billFrom}>
     <h2>Bill From</h2>
-    <div className={styles.flexContainer}>
+    <fieldset className={styles.flexContainer}>
       <InputField
         name="companyName"
         className={styles.formGroup}
@@ -21,9 +21,9 @@ export const BillFrom: React.FC = () => (
         showLabel
         label="Company Email"
       />
-    </div>
+    </fieldset>
 
-    <div className={styles.flexContainer}>
+    <fieldset className={styles.flexContainer}>
       <SelectField
         showLabel
         className={styles.formGroup}
@@ -46,7 +46,7 @@ export const BillFrom: React.FC = () => (
         showLabel
         label="Postal Code"
       />
-    </div>
+    </fieldset>
 
     <InputField
       className={styles.formGroup}

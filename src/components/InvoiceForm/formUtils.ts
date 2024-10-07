@@ -13,7 +13,7 @@ export type InvoiceFormData = {
   clientCity: string;
   clientPostalCode: string;
   clientStreetAddress: string;
-  invoiceDate: string;
+  invoiceDate: Date;
   paymentTerms: string;
   projectDescription: string;
   items: {
@@ -37,7 +37,7 @@ export const defaultValues: InvoiceFormData = {
   clientCity: "",
   clientPostalCode: "",
   clientStreetAddress: "",
-  invoiceDate: "",
+  invoiceDate: new Date(),
   paymentTerms: "",
   projectDescription: "",
   items: [],
@@ -62,7 +62,7 @@ export const formSchema = yup.object().shape({
   clientCity: yup.string().required("City is required"),
   clientPostalCode: yup.string().required("Postal Code is required"),
   clientStreetAddress: yup.string().required("Street Address is required"),
-  invoiceDate: yup.string().required("Invoice Date is required"),
+  invoiceDate: yup.date().required("Invoice Date is required"),
   paymentTerms: yup.string().required("Payment Terms is required"),
   projectDescription: yup.string().required("Project Description is required"),
   items: yup.array().of(
@@ -73,3 +73,38 @@ export const formSchema = yup.object().shape({
     })
   ),
 });
+
+export const getInvoiceObject = (data: InvoiceFormData) => {
+  return {
+    createInvoiceAttributes: {
+      invoiceDate: data.invoiceDate,
+      paymentTerms: data.paymentTerms,
+      projectDescription: data.projectDescription,
+      billingFromAttributes: {
+        billingFromAddressAttributes: {
+          streetAddress: data.companyStreetAddress,
+          city: data.companyCity,
+          country: data.companyCountry,
+          postalCode: data.companyPostalCode,
+        },
+        companyEmail: data.companyEmail,
+        companyName: data.companyName,
+      },
+      billingToAttributes: {
+        billingToAddressAttributes: {
+          streetAddress: data.clientStreetAddress,
+          city: data.clientCity,
+          country: data.clientCountry,
+          postalCode: data.clientPostalCode,
+        },
+        clientEmail: data.clientEmail,
+        clientName: data.clientName,
+      },
+      itemAttributes: data.items.map((item) => ({
+        name: item.name,
+        price: Number(item.price),
+        quantity: Number(item.qty),
+      })),
+    },
+  };
+};

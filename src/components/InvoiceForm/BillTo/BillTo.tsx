@@ -5,9 +5,9 @@ import { CountryOptions, InvoiceTermsOptions } from "../../../utils/constants";
 import { DateTimeField } from "../../Form/DateTimeField/DateTimeField";
 
 export const BillTo: React.FC = () => (
-  <div className={styles.billFrom}>
+  <section className={styles.billFrom}>
     <h2>Bill To</h2>
-    <div className={styles.flexContainer}>
+    <fieldset className={styles.flexContainer}>
       <InputField
         name="clientName"
         placeholder="Client Name"
@@ -22,9 +22,9 @@ export const BillTo: React.FC = () => (
         label="Client Email"
         className={styles.formGroup}
       />
-    </div>
+    </fieldset>
 
-    <div className={styles.flexContainer}>
+    <fieldset className={styles.flexContainer}>
       <SelectField
         showLabel
         label="Client Country"
@@ -46,7 +46,7 @@ export const BillTo: React.FC = () => (
         placeholder="Postal Code"
         className={styles.formGroup}
       />
-    </div>
+    </fieldset>
 
     <InputField
       showLabel
@@ -56,7 +56,7 @@ export const BillTo: React.FC = () => (
       placeholder="Street Address"
     />
 
-    <div className={styles.flexContainer}>
+    <fieldset className={styles.flexContainer}>
       <DateTimeField
         showLabel
         label="Invoice Date"
@@ -70,12 +70,12 @@ export const BillTo: React.FC = () => (
         name="paymentTerms"
         options={InvoiceTermsOptions}
       />
-    </div>
+    </fieldset>
     <InputField
       name="projectDescription"
       placeholder="Project Description"
       showLabel
       label="Project Description"
     />
-  </div>
+  </section>
 );
