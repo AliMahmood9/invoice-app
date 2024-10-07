@@ -21,7 +21,7 @@ import { messages } from "../../utils/constants";
 const InvoiceForm = () => {
   const methods = useForm<InvoiceFormData>({
     defaultValues,
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema), // it is known issue exist on yup with ts https://github.com/orgs/react-hook-form/discussions/11472
   });
 
   const { handleSubmit, reset, watch } = methods;
