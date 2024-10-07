@@ -13,7 +13,7 @@ export type InvoiceFormData = {
   clientCity: string;
   clientPostalCode: string;
   clientStreetAddress: string;
-  invoiceDate: string;
+  invoiceDate: Date;
   paymentTerms: string;
   projectDescription: string;
   items: {
@@ -37,7 +37,7 @@ export const defaultValues: InvoiceFormData = {
   clientCity: "",
   clientPostalCode: "",
   clientStreetAddress: "",
-  invoiceDate: "",
+  invoiceDate: new Date(),
   paymentTerms: "",
   projectDescription: "",
   items: [],
@@ -62,7 +62,7 @@ export const formSchema = yup.object().shape({
   clientCity: yup.string().required("City is required"),
   clientPostalCode: yup.string().required("Postal Code is required"),
   clientStreetAddress: yup.string().required("Street Address is required"),
-  invoiceDate: yup.string().required("Invoice Date is required"),
+  invoiceDate: yup.date().required("Invoice Date is required"),
   paymentTerms: yup.string().required("Payment Terms is required"),
   projectDescription: yup.string().required("Project Description is required"),
   items: yup.array().of(
@@ -73,3 +73,50 @@ export const formSchema = yup.object().shape({
     })
   ),
 });
+
+// utils/invoiceUtils.ts
+export const getInvoiceObject = (
+  data: InvoiceFormData,
+  subtotal: number,
+  tax: number,
+  total: number
+) => {
+  return {
+    createInvoiceAttributes: {
+      billingFrom: {
+        billingFromAddress: {
+          streetAddress: data.companyStreetAddress,
+          city: data.companyCity,
+          country: data.companyCountry,
+          postalCode: data.companyPostalCode,
+        },
+        companyEmail: data.companyEmail,
+        companyName: data.companyName,
+        id: "1234", // example ID for testing
+      },
+      billingTo: {
+        billingToAddress: {
+          streetAddress: data.clientStreetAddress,
+          city: data.clientCity,
+          country: data.clientCountry,
+          postalCode: data.clientPostalCode,
+        },
+        clientEmail: data.clientEmail,
+        clientName: data.clientName,
+        id: "3214", // example ID for testing
+      },
+      invoiceDate: data.invoiceDate,
+      items: data.items.map((item, index) => ({
+        id: index.toString(), // Use appropriate ID generation logic
+        name: item.name,
+        price: Number(item.price),
+        quantity: Number(item.qty),
+        totalPrice: Number(item.price) * Number(item.qty),
+      })),
+      paymentTerms: data.paymentTerms,
+      subTotal: subtotal, // Calculated subTotal
+      tax: tax, // Calculated tax
+      totalAmount: total, // Calculated totalAmount
+    },
+  };
+};

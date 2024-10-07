@@ -1,33 +1,34 @@
-/* BillFrom.module.scss */
+// TODO move colors to variable file
+
 .billFrom {
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
 
   .flexContainer {
     display: flex;
-    gap: 16px;
+    gap: 1rem;
   }
 
   .formGroup {
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     width: 100%;
 
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 0.3125rem;
       font-weight: 500;
       color: #344054;
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
     }
 
     input,
     select {
       width: 100%;
-      padding: 10px 14px;
+      padding: 0.625rem 0.875rem;
       border: 1px solid #d0d5dd;
-      border-radius: 8px;
+      border-radius: 0.5rem;
       color: #101828;
-      height: 44px;
+      height: 2.75rem;
     }
 
     input:focus,
