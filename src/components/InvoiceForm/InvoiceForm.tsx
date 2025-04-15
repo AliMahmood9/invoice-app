@@ -1,4 +1,4 @@
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, Resolver } from "react-hook-form";
 import { Button } from "../UI/Button";
 import { BillFrom } from "./BillFrom/BillFrom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,7 +21,7 @@ import { messages } from "../../utils/constants";
 const InvoiceForm = () => {
   const methods = useForm<InvoiceFormData>({
     defaultValues,
-    resolver: yupResolver(formSchema), // it is known issue exist on yup with ts https://github.com/orgs/react-hook-form/discussions/11472
+    resolver: yupResolver(formSchema) as Resolver<InvoiceFormData>,
   });
 
   const { handleSubmit, reset, watch } = methods;

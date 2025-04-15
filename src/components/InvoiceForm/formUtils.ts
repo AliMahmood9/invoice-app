@@ -66,11 +66,15 @@ export const formSchema = yup.object().shape({
   paymentTerms: yup.string().required("Payment Terms is required"),
   projectDescription: yup.string().required("Project Description is required"),
   items: yup.array().of(
-    yup.object().shape({
-      name: yup.string().required("Item name is required"),
-      qty: yup.number().required("Quantity is required").positive().integer(),
-      price: yup.number().required("Price is required").positive(),
-    })
+    yup
+      .object()
+      .shape({
+        name: yup.string().required("Item name is required"),
+        qty: yup.number().required("Quantity is required").positive().integer(),
+        price: yup.number().required("Price is required").positive(),
+        total: yup.number().required().default(0),
+      })
+      .required()
   ),
 });
 
